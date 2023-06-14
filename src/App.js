@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Route, Redirect, Routes } from 'react-router-dom';
+import StartPage from './page/StartPage'
+import LoginForm from './page/LoginForm'
+import RegisterForm from './page/RegisterForm';
+import RouteLayout from './components/layout/RouteLayout';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        <Route exact path='/' element={<StartPage />} />
+        <Route path='/login' element={<LoginForm />} />
+        <Route path='/register' element={<RegisterForm/>}/>
+        <Route path='/mainpage/*' element={<RouteLayout/>}/>
+      </Routes>
+      <ToastContainer />
+    </Router>
   );
 }
 
 export default App;
+
+//ROLE_LECTURER : cothao/12345
+//ROLE_OFFICER : brucelee/12345
+//ROLE_STUDENT: tuanphung/12345
+//ROLE_FACILITY: jackiechan/12345

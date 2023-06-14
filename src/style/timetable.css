@@ -1,0 +1,35 @@
+:root {
+    --width-nav: 60px;
+    --width-media: 60px;
+}
+
+.main-timetable {
+    bottom: 0;
+    right: 0;
+    width: calc(100vw - var(--width-nav));
+    height: calc(100vh - 72px);
+    position: absolute;
+    transition: width 0.3s ease;
+    background-color: rgb(235, 235, 235);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+    .table {
+        position: absolute;
+        width: 95%;
+        top: 100px;
+    }
+
+    .table-container {
+        height: 570px;
+    }
+
+    .table-icon:hover {
+        cursor: pointer;
+        color: #0c72c0;
+    }
+
+
+}

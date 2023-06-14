@@ -1,0 +1,64 @@
+:root {
+    --width-nav: 60px;
+    --width-media: 60px;
+}
+ 
+.main-room {
+    bottom: 0;
+    right: 0;
+    width: calc(100vw - var(--width-nav));
+    height: calc(100vh - 72px);
+    position: absolute;
+    transition: width 0.3s ease;
+    background-color: rgb(235, 235, 235);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .btn-add-room {
+        padding: 1em 2em;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: #54afff;
+        transition: all 1000ms;
+        font-size: 12px;
+        position: absolute;
+        right: 50px;
+        top: 50px;
+        overflow: hidden;
+        outline: 2px solid #54afff;
+    }
+
+    .btn-add-room:hover {
+        color: #ffffff;
+        transform: scale(1.1);
+        outline: 2px solid #54afff;
+        box-shadow: 4px 5px 17px -4px #54afff;
+    }
+
+    .btn-add-room::before {
+        content: "";
+        position: absolute;
+        left: -50px;
+        top: 0;
+        width: 0;
+        height: 100%;
+        background-color: #54afff;
+        transform: skewX(45deg);
+        z-index: -1;
+        transition: width 1000ms;
+    }
+
+    .btn-add-room:hover::before {
+        width: 250%;
+    }
+    .room-table {
+        position: absolute;
+        width: 95%;
+        height: 520px;
+        top: 100px
+    }
+}

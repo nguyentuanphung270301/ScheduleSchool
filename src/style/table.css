@@ -1,0 +1,36 @@
+:root {
+    --width-nav: 60px;
+    --width-media: 60px;
+}
+
+.detail-table {
+    width: 95%;
+    border-collapse: collapse;
+}
+
+.detail-table th,
+.detail-table td {
+    border: 1px solid black;
+    padding: 8px;
+    width: 150px;
+}
+
+.day {
+    font-size: 18px;
+    background-color: rgb(46, 125, 252);
+    color: white;
+}
+
+.season {
+    font-size: 18px;
+}
+
+.event-table {
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: rgb(14, 173, 147);
+    border-radius: 10px;
+}

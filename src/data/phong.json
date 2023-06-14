@@ -1,0 +1,38 @@
+[
+  {
+    "number": 1,
+    "name": "2A08",
+    "seatingCapacity": 120,
+    "roomStatus": "ACTIVATED"
+  },
+  {
+    "number": 2,
+    "name": "2A24",
+    "seatingCapacity": 110,
+    "roomStatus": "ACTIVATED"
+  },
+  {
+    "number": 3,
+    "name": "2A32",
+    "seatingCapacity": 90,
+    "roomStatus": "ACTIVATED"
+  },
+  {
+    "number": 4,
+    "name": "2B34",
+    "seatingCapacity": 100,
+    "roomStatus": "ACTIVATED"
+  },
+  {
+    "number": 5,
+    "name": "2A16",
+    "seatingCapacity": 100,
+    "roomStatus": "ACTIVATED"
+  },
+  {
+    "number": 6,
+    "name": "2A23",
+    "seatingCapacity": 100,
+    "roomStatus": "ACTIVATED"
+  }
+]

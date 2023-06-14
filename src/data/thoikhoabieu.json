@@ -1,0 +1,380 @@
+[
+  {
+    "id": 1,
+    "department": {
+      "id": 2,
+      "name": "EE"
+    },
+    "course": {
+      "number": "INT104",
+      "name": "Kiểm thử phần mềm",
+      "maxNumberOfStudents": 80,
+      "department": {
+        "id": 2,
+        "name": "EE"
+      }
+    },
+    "instructor": {
+      "id": 1,
+      "fname": "Cô",
+      "lname": "Thảo",
+      "dob": "2001-01-01",
+      "gender": true,
+      "address": "xxx",
+      "email": "thao@gmail.com",
+      "phone": "0123456789",
+      "role": "ROLE_LECTURER",
+      "username": "cothao",
+      "password": "12345",
+      "academicRank": "master",
+      "degree": "asd",
+      "isQuitJob": false
+    },
+    "meetingTime": {
+      "id": 5,
+      "time": "MON: 13 AM -- 14 PM"
+    },
+    "room": {
+      "number": 3,
+      "name": "2A32",
+      "seatingCapacity": 90,
+      "roomStatus": "ACTIVATED"
+    }
+  },
+  {
+    "id": 2,
+    "department": {
+      "id": 2,
+      "name": "EE"
+    },
+    "course": {
+      "number": "INT105",
+      "name": "Lập trình vi mạch",
+      "maxNumberOfStudents": 90,
+      "department": {
+        "id": 2,
+        "name": "EE"
+      }
+    },
+    "instructor": {
+      "id": 4,
+      "fname": "Thầy",
+      "lname": "Kiên",
+      "dob": "2001-01-01",
+      "gender": false,
+      "address": "xxx",
+      "email": "kien@gmail.com",
+      "phone": "0123456789",
+      "role": "ROLE_LECTURER",
+      "username": "thaykien",
+      "password": "12345",
+      "academicRank": "master",
+      "degree": "asd",
+      "isQuitJob": false
+    },
+    "meetingTime": {
+      "id": 31,
+      "time": "THU: 14 PM -- 15 PM"
+    },
+    "room": {
+      "number": 6,
+      "name": "2A23",
+      "seatingCapacity": 100,
+      "roomStatus": "ACTIVATED"
+    }
+  },
+  {
+    "id": 3,
+    "department": {
+      "id": 2,
+      "name": "EE"
+    },
+    "course": {
+      "number": "INT106",
+      "name": "Lập trình IOT",
+      "maxNumberOfStudents": 85,
+      "department": {
+        "id": 2,
+        "name": "EE"
+      }
+    },
+    "instructor": {
+      "id": 4,
+      "fname": "Thầy",
+      "lname": "Kiên",
+      "dob": "2001-01-01",
+      "gender": false,
+      "address": "xxx",
+      "email": "kien@gmail.com",
+      "phone": "0123456789",
+      "role": "ROLE_LECTURER",
+      "username": "thaykien",
+      "password": "12345",
+      "academicRank": "master",
+      "degree": "asd",
+      "isQuitJob": false
+    },
+    "meetingTime": {
+      "id": 16,
+      "time": "TUE: 15 PM -- 16 PM"
+    },
+    "room": {
+      "number": 1,
+      "name": "2A08",
+      "seatingCapacity": 120,
+      "roomStatus": "ACTIVATED"
+    }
+  },
+  {
+    "id": 4,
+    "department": {
+      "id": 1,
+      "name": "MATH"
+    },
+    "course": {
+      "number": "INT100",
+      "name": "Kiến trúc và thiết kế phần mềm",
+      "maxNumberOfStudents": 100,
+      "department": {
+        "id": 1,
+        "name": "MATH"
+      }
+    },
+    "instructor": {
+      "id": 1,
+      "fname": "Cô",
+      "lname": "Thảo",
+      "dob": "2001-01-01",
+      "gender": true,
+      "address": "xxx",
+      "email": "thao@gmail.com",
+      "phone": "0123456789",
+      "role": "ROLE_LECTURER",
+      "username": "cothao",
+      "password": "12345",
+      "academicRank": "master",
+      "degree": "asd",
+      "isQuitJob": false
+    },
+    "meetingTime": {
+      "id": 2,
+      "time": "MON: 08 AM -- 09 AM"
+    },
+    "room": {
+      "number": 6,
+      "name": "2A23",
+      "seatingCapacity": 100,
+      "roomStatus": "ACTIVATED"
+    }
+  },
+  {
+    "id": 5,
+    "department": {
+      "id": 1,
+      "name": "MATH"
+    },
+    "course": {
+      "number": "INT101",
+      "name": "Nhập môn trí tuệ nhân tạo",
+      "maxNumberOfStudents": 90,
+      "department": {
+        "id": 1,
+        "name": "MATH"
+      }
+    },
+    "instructor": {
+      "id": 3,
+      "fname": "Thầy",
+      "lname": "Duy",
+      "dob": "2001-01-01",
+      "gender": false,
+      "address": "xxx",
+      "email": "duy@gmail.com",
+      "phone": "0123456789",
+      "role": "ROLE_LECTURER",
+      "username": "thayduy",
+      "password": "12345",
+      "academicRank": "master",
+      "degree": "asd",
+      "isQuitJob": false
+    },
+    "meetingTime": {
+      "id": 2,
+      "time": "MON: 08 AM -- 09 AM"
+    },
+    "room": {
+      "number": 2,
+      "name": "2A24",
+      "seatingCapacity": 110,
+      "roomStatus": "ACTIVATED"
+    }
+  },
+  {
+    "id": 6,
+    "department": {
+      "id": 1,
+      "name": "MATH"
+    },
+    "course": {
+      "number": "INT102",
+      "name": "Lập trình hệ thống nhúng",
+      "maxNumberOfStudents": 110,
+      "department": {
+        "id": 1,
+        "name": "MATH"
+      }
+    },
+    "instructor": {
+      "id": 3,
+      "fname": "Thầy",
+      "lname": "Duy",
+      "dob": "2001-01-01",
+      "gender": false,
+      "address": "xxx",
+      "email": "duy@gmail.com",
+      "phone": "0123456789",
+      "role": "ROLE_LECTURER",
+      "username": "thayduy",
+      "password": "12345",
+      "academicRank": "master",
+      "degree": "asd",
+      "isQuitJob": false
+    },
+    "meetingTime": {
+      "id": 3,
+      "time": "MON: 09 AM -- 10 AM"
+    },
+    "room": {
+      "number": 1,
+      "name": "2A08",
+      "seatingCapacity": 120,
+      "roomStatus": "ACTIVATED"
+    }
+  },
+  {
+    "id": 7,
+    "department": {
+      "id": 1,
+      "name": "MATH"
+    },
+    "course": {
+      "number": "INT103",
+      "name": "Lập trình hướng đối tượng",
+      "maxNumberOfStudents": 120,
+      "department": {
+        "id": 1,
+        "name": "MATH"
+      }
+    },
+    "instructor": {
+      "id": 1,
+      "fname": "Cô",
+      "lname": "Thảo",
+      "dob": "2001-01-01",
+      "gender": true,
+      "address": "xxx",
+      "email": "thao@gmail.com",
+      "phone": "0123456789",
+      "role": "ROLE_LECTURER",
+      "username": "cothao",
+      "password": "12345",
+      "academicRank": "master",
+      "degree": "asd",
+      "isQuitJob": false
+    },
+    "meetingTime": {
+      "id": 7,
+      "time": "MON: 14 PM -- 15 PM"
+    },
+    "room": {
+      "number": 1,
+      "name": "2A08",
+      "seatingCapacity": 120,
+      "roomStatus": "ACTIVATED"
+    }
+  },
+  {
+    "id": 8,
+    "department": {
+      "id": 3,
+      "name": "PHY"
+    },
+    "course": {
+      "number": "INT107",
+      "name": "Vật lý 1",
+      "maxNumberOfStudents": 90,
+      "department": {
+        "id": 3,
+        "name": "PHY"
+      }
+    },
+    "instructor": {
+      "id": 2,
+      "fname": "Thầy",
+      "lname": "Thái",
+      "dob": "2001-01-01",
+      "gender": false,
+      "address": "xxx",
+      "email": "thai@gmail.com",
+      "phone": "0123456789",
+      "role": "ROLE_LECTURER",
+      "username": "thaythai",
+      "password": "12345",
+      "academicRank": "master",
+      "degree": "asd",
+      "isQuitJob": false
+    },
+    "meetingTime": {
+      "id": 10,
+      "time": "TUE: 07 AM -- 08 AM"
+    },
+    "room": {
+      "number": 6,
+      "name": "2A23",
+      "seatingCapacity": 100,
+      "roomStatus": "ACTIVATED"
+    }
+  },
+  {
+    "id": 9,
+    "department": {
+      "id": 3,
+      "name": "PHY"
+    },
+    "course": {
+      "number": "INT108",
+      "name": "Vật lý 3",
+      "maxNumberOfStudents": 100,
+      "department": {
+        "id": 3,
+        "name": "PHY"
+      }
+    },
+    "instructor": {
+      "id": 2,
+      "fname": "Thầy",
+      "lname": "Thái",
+      "dob": "2001-01-01",
+      "gender": false,
+      "address": "xxx",
+      "email": "thai@gmail.com",
+      "phone": "0123456789",
+      "role": "ROLE_LECTURER",
+      "username": "thaythai",
+      "password": "12345",
+      "academicRank": "master",
+      "degree": "asd",
+      "isQuitJob": false
+    },
+    "meetingTime": {
+      "id": 14,
+      "time": "TUE: 13 AM -- 14 PM"
+    },
+    "room": {
+      "number": 2,
+      "name": "2A24",
+      "seatingCapacity": 110,
+      "roomStatus": "ACTIVATED"
+    }
+  }
+]
