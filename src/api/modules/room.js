@@ -28,7 +28,7 @@ const roomApis = {
     createRoom: async (data) => {
         try {
             console.log('send request')
-            const response = await axiosClient.post(roomEndpoints.createRoom(data))
+            const response = await axiosClient.post(roomEndpoints.createRoom, data)
             return { response }
         }
         catch (err) { return { err } }
@@ -44,7 +44,7 @@ const roomApis = {
     updateRoom: async (data) => {
         try {
             console.log('send request')
-            const response = await axiosClient.put(roomEndpoints.updateRoom(data))
+            const response = await axiosClient.put(roomEndpoints.updateRoom, data)
             return { response }
         }
         catch (err) { return { err } }

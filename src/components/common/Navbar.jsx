@@ -32,9 +32,9 @@ const Navbar = () => {
                 const { response, err } = await studentApis.getStudentById(username)
                 if (response) {
                     console.log(response)
+                    setUserInfo(response)
                 }
                 if (err) {
-                    console.log('Test' + username)
                     console.log(err)
                 }
             }
@@ -187,12 +187,28 @@ const Navbar = () => {
                                 }}>Quản lý thời khoá biểu</Typography>}
                                 {!isOpenNav && (menuOne ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />)}
                             </div><ul className={`nav-list ${(menuOne && !isOpenNav) ? 'show' : ''}`}>
-                                    <li className={`${headerText === 'Quản lý khoá học' ? 'active' : ''}`} onClick={() => handleMenuClick('Quản lý khoá học')}><Typography className='text-li' sx={{
-                                        marginLeft: '60px'
-                                    }}>Quản lý khoá học</Typography></li>
-                                    <li className={`${headerText === 'Tạo thời khoá biểu' ? 'active' : ''}`} onClick={() => handleMenuClick('Tạo thời khoá biểu')}><Typography className='text-li' sx={{
-                                        marginLeft: '60px'
-                                    }}>Tạo thời khoá biểu</Typography></li>
+                                    <li className={`${headerText === 'Quản lý khoá học' ? 'active' : ''}`} onClick={() => handleMenuClick('Quản lý khoá học')}>
+                                        <Link to='/mainpage/course' style={{
+                                            color: 'inherit',
+                                            width: '100%',
+                                            textDecoration: 'none',
+                                        }}>
+                                            <Typography className='text-li' sx={{
+                                                marginLeft: '60px'
+                                            }}>Quản lý khoá học</Typography>
+                                        </Link>
+                                    </li>
+                                    <li className={`${headerText === 'Tạo thời khoá biểu' ? 'active' : ''}`} onClick={() => handleMenuClick('Tạo thời khoá biểu')}>
+                                        <Link to='/mainpage/generate-schedule' style={{
+                                            color: 'inherit',
+                                            width: '100%',
+                                            textDecoration: 'none',
+                                        }}>
+                                            <Typography className='text-li' sx={{
+                                                marginLeft: '60px'
+                                            }}>Tạo thời khoá biểu</Typography>
+                                        </Link>
+                                    </li>
                                     <li className={`${headerText === 'Xem thời khoá biểu' ? 'active' : ''}`} onClick={() => handleMenuClick('Xem thời khoá biểu')}>
                                         <Link to='/mainpage/timetable' style={{
                                             color: 'inherit',
@@ -218,10 +234,10 @@ const Navbar = () => {
                         </div><ul className={`nav-list ${(menuTwo && !isOpenNav) ? 'show' : ''}`}>
                                 <li className={`${headerText === 'Quản lý phòng học' ? 'active' : ''}`} onClick={() => handleMenuClick('Quản lý phòng học')}>
                                     <Link to='/mainpage/room' style={{
-                                            color: 'inherit',
-                                            width: '100%',
-                                            textDecoration: 'none',
-                                        }}>
+                                        color: 'inherit',
+                                        width: '100%',
+                                        textDecoration: 'none',
+                                    }}>
                                         <Typography className='text-li' sx={{
                                             marginLeft: '60px'
                                         }}>Quản lý phòng học</Typography>
@@ -236,12 +252,28 @@ const Navbar = () => {
                             }}>Quản lý PH, GV, SV</Typography>}
                             {!isOpenNav && (menuTwo ? <FontAwesomeIcon icon={faCaretUp} /> : <FontAwesomeIcon icon={faCaretDown} />)}
                         </div><ul className={`nav-list ${(menuTwo && !isOpenNav) ? 'show' : ''}`}>
-                                <li className={`${headerText === 'Quản lý giảng viên' ? 'active' : ''}`} onClick={() => handleMenuClick('Quản lý giảng viên')}><Typography className='text-li' sx={{
-                                    marginLeft: '60px'
-                                }}>Quản lý giảng viên</Typography></li>
-                                <li className={`${headerText === 'Quản lý sinh viên' ? 'active' : ''}`} onClick={() => handleMenuClick('Quản lý sinh viên')}><Typography className='text-li' sx={{
-                                    marginLeft: '60px'
-                                }}>Quản lý sinh viên</Typography></li>
+                                <li className={`${headerText === 'Quản lý giảng viên' ? 'active' : ''}`} onClick={() => handleMenuClick('Quản lý giảng viên')}>
+                                    <Link to='/mainpage/instructor' style={{
+                                        color: 'inherit',
+                                        width: '100%',
+                                        textDecoration: 'none',
+                                    }}>
+                                        <Typography className='text-li' sx={{
+                                            marginLeft: '60px'
+                                        }}>Quản lý giảng viên</Typography>
+                                    </Link>
+                                </li>
+                                <li className={`${headerText === 'Quản lý sinh viên' ? 'active' : ''}`} onClick={() => handleMenuClick('Quản lý sinh viên')}>
+                                    <Link to='/mainpage/student' style={{
+                                        color: 'inherit',
+                                        width: '100%',
+                                        textDecoration: 'none',
+                                    }}>
+                                        <Typography className='text-li' sx={{
+                                            marginLeft: '60px'
+                                        }}>Quản lý sinh viên</Typography>
+                                    </Link>
+                                </li>
                             </ul></>)}
                     </li>
                 </ul>

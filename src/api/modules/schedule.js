@@ -3,7 +3,7 @@ import axiosClient from '../axiosClient/axios'
 const scheduleEndpoints = {
     generateSchedule: 'api/v1/schedules/generateSchedule',
     getSchedule: 'api/v1/schedules/getSchedule',
-    saveSchedule: 'api/v1/schedules/getSchedule'
+    saveSchedule: 'api/v1/schedules/saveSchedule'
 }
 
 const scheduleApis = {
@@ -11,7 +11,7 @@ const scheduleApis = {
         try {
             console.log('send request')
             const response = await axiosClient.get(scheduleEndpoints.generateSchedule)
-            return response
+            return {response}
         }
         catch (err) {
             return { err }
@@ -31,7 +31,7 @@ const scheduleApis = {
         try {
             console.log('send request')
             const response = await axiosClient.post(scheduleEndpoints.saveSchedule)
-            return response
+            return {response}
         }
         catch (err) {
             return { err }

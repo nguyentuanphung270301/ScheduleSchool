@@ -12,6 +12,7 @@ import scheduleApis from '../api/modules/schedule'
 import instructorsApis from '../api/modules/instructor';
 import { useState } from 'react';
 
+
 const TimeTable = () => {
 
     const username = localStorage.getItem('username')
@@ -80,10 +81,12 @@ const TimeTable = () => {
     return (
         <div>
             <div className='main-timetable'>
+                {role === 'ROLE_STUDENT' && <button className='btn-timetable'>Đăng ký môn</button>}
+               {role === 'ROLE_LECTURER'&& <button className='btn-timetable'>Đăng ký dạy bù, thực hành</button>}
                 <div className='table'>
                     <TableContainer component={Paper} className='table-container'>
                         <Table aria-label="customized table">
-                            <TableHead sx={{ backgroundColor: 'black' }}>
+                            <TableHead sx={{ backgroundColor: 'black', position: 'sticky', top: 0 }}>
                                 <TableRow>
                                     <TableCell><Typography color='white'>Mã lớp</Typography></TableCell>
                                     <TableCell><Typography color='white'>Khoa</Typography></TableCell>

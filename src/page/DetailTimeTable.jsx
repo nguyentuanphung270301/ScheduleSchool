@@ -4,7 +4,8 @@ import '../style/detailTimeTable.css'
 import scheduleApis from '../api/modules/schedule'
 import { CircularProgress, Typography } from '@mui/material';
 import '../style/table.css'
-
+import studentApis from '../api/modules/student';
+import instructorsApis from '../api/modules/instructor';
 
 
 
@@ -15,11 +16,15 @@ const DetailTimeTable = () => {
     const location = useLocation();
     const id = location.pathname.replace('/mainpage/timetable/detail/', '');
     const role = localStorage.getItem('role')
+    const username = localStorage.getItem('username')
 
     const numRows = 8; // Số hàng
     const numCols = 8; // Số cột
     const daysOfWeek = ["Thứ 2", "Thứ 3", "Thứ 4", "Thứ 5", "Thứ 6", "Thứ 7", "Chủ nhật"];
     const meetingTime = ["Kíp 1: 7h-8h", "Kíp 2: 8h-9h", "Kíp 3: 9h-10h", "Kíp 4: 10h-11h", "Kíp 5: 13h-14h", "Kíp 6: 14h-15h", "Kíp 7: 15h-16h", "Kíp 8: 16h-17h"];
+    const [userInfo, setUserInfo] = useState(null)
+
+
 
     const [data, setData] = useState(null)
     var result = []
@@ -27,11 +32,36 @@ const DetailTimeTable = () => {
     var column = null
     var row = null
 
+    useEffect(() => {
+        const isChecked = async () => {
+            if (role !== null && role === 'ROLE_STUDENT') {
+                const { response, err } = await studentApis.getStudentById(username)
+                if (response) {
+                    console.log(response)
+                    setUserInfo(response)
+                }
+                if (err) {
+                    console.log(err)
+                }
+            }
+            if (role !== null && role !== 'ROLE_STUDENT') {
+                const { response, err } = await instructorsApis.getInstructorById(id)
+                if (response) {
+                    setUserInfo(response)
+                    console.log(response)
+                }
+                if (err) {
+                    console.log(err)
+                }
+            }
+        }
+        isChecked()
+    }, [role, username])
 
 
     useEffect(() => {
         const checkInfo = async () => {
-            if (role === 'ROLE_LECTURER' || role === 'ROLE_OFFICER' ) {
+            if (role === 'ROLE_LECTURER' || role === 'ROLE_OFFICER') {
                 const { response, err } = await scheduleApis.getSchedule()
                 if (response) {
                     console.log(response)
@@ -106,13 +136,22 @@ const DetailTimeTable = () => {
 
     console.log(data)
 
+
     return (
         <div>
             <div className='main-detail-timetable'>
-                <Typography variant='h3' fontWeight='500' sx={{
-                    position: 'absolute',
-                    top: '20px'
-                }}>Lịch dạy</Typography>
+                <div className='header-detail-timetale'>
+                    {userInfo && <div className='card-info'>
+                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{marginLeft: '10px', marginTop:'5px'}}>Tên: {userInfo.fname + " " + userInfo.lname}</Typography>
+                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{marginLeft: '10px'}} >Ngày sinh: {userInfo.dob}</Typography>
+                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{marginLeft: '10px'}} >Email: {userInfo.email}</Typography>
+                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{marginLeft: '10px'}} >Số điện thoại: {userInfo.phone}</Typography>
+                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{marginLeft: '10px'}} >Role: {userInfo.role}</Typography>
+                    </div>}
+                    <Typography variant='h3' fontWeight='500' sx={{
+                        top: '20px'
+                    }}>Lịch dạy</Typography>
+                </div>
                 <div className='schedule-week'>
                     {data ? <table className='detail-table'>
                         <thead>
@@ -133,7 +172,7 @@ const DetailTimeTable = () => {
                                         return (
                                             <td key={columnIndex}>
                                                 {matchingData && <div className='event-table'>
-                                                    <Typography fontWeight='500' fontSize='16px' marginLeft='5px'>{matchingData && `${matchingData.title}(${matchingData.code})`}</Typography>
+                                                    <Typography fontWeight='550' fontSize='16px' marginLeft='5px'>{matchingData && `${matchingData.title} (${matchingData.code})`}</Typography>
                                                     <Typography fontWeight='500' fontSize='14px' marginLeft='5px'>{matchingData && `Phòng: ${matchingData.room}`}</Typography>
                                                     <Typography fontWeight='500' fontSize='14px' marginLeft='5px'>{matchingData && `GV: ${matchingData.instructor}`}</Typography>
                                                 </div>}

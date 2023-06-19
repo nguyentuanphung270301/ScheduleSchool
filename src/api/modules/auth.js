@@ -26,7 +26,7 @@ const authApis = {
     register: async (data) => {
         try {
             console.log('send request')
-            const response = await axiosClient.post(authEndpoints.register(data))
+            const response = await axiosClient.post(authEndpoints.register, data)
             return { response }
         }
         catch (err) { return { err } }

@@ -29,7 +29,7 @@ const courseApis = {
     createCourse: async (data) => {
         try {
             console.log('send request')
-            const response = await axiosClient.post(courseEndpoints.createCourse(data))
+            const response = await axiosClient.post(courseEndpoints.createCourse,data)
             return { response }
         }
         catch (err) { return { err } }
@@ -50,10 +50,10 @@ const courseApis = {
         }
         catch (err) { return { err } }
     },
-    updateCourse: async () => {
+    updateCourse: async (data) => {
         try {
             console.log('send request')
-            const response = await axiosClient.put(courseEndpoints.updateCourse)
+            const response = await axiosClient.put(courseEndpoints.updateCourse, data)
             return { response }
         }
         catch (err) { return { err } }

@@ -45,7 +45,7 @@ const studentApis = {
     updateStudent: async (data) => {
         try {
             console.log('send request')
-            const response = await axiosClient.put(studentEndpoints.updateStudent(data))
+            const response = await axiosClient.put(studentEndpoints.updateStudent, data)
             return { response }
         }
         catch (err) { return { err } }

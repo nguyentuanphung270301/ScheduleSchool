@@ -3,7 +3,7 @@
     --width-media: 60px;
 }
 
-.main-room {
+.main-student {
     bottom: 0;
     right: 0;
     width: calc(100vw - var(--width-nav));
@@ -15,7 +15,7 @@
     flex-direction: column;
     align-items: center;
 
-    .btn-add-room {
+    .btn-add-student {
         padding: 1em 2em;
         border: none;
         border-radius: 5px;
@@ -32,14 +32,14 @@
         outline: 2px solid #54afff;
     }
 
-    .btn-add-room:hover {
+    .btn-add-student:hover {
         color: #ffffff;
         transform: scale(1.1);
         outline: 2px solid #54afff;
         box-shadow: 4px 5px 17px -4px #54afff;
     }
 
-    .btn-add-room::before {
+    .btn-add-student::before {
         content: "";
         position: absolute;
         left: -50px;
@@ -52,11 +52,11 @@
         transition: width 1000ms;
     }
 
-    .btn-add-room:hover::before {
+    .btn-add-student:hover::before {
         width: 250%;
     }
 
-    .room-table {
+    .student-table {
         position: absolute;
         width: 95%;
         height: 520px;

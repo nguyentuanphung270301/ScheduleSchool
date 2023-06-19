@@ -28,7 +28,7 @@ const instructorsApis = {
     createInstructor: async (data) => {
         try {
             console.log('send request')
-            const response = await axiosClient.post(instructorEndpoints.createInstructor(data))
+            const response = await axiosClient.post(instructorEndpoints.createInstructor, data)
             return { response }
         }
         catch (err) { return { err } }
@@ -44,7 +44,7 @@ const instructorsApis = {
     updateInstructor: async (data) => {
         try {
             console.log('send request')
-            const response = await axiosClient.put(instructorEndpoints.updateInstructor(data))
+            const response = await axiosClient.put(instructorEndpoints.updateInstructor, data)
             return { response }
         }
         catch (err) { return { err } }

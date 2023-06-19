@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import '../style/room.css'
+import '../style/course.css'
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
@@ -11,13 +11,13 @@ import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
-import roomApis from '../api/modules/room'
+import courseApis from '../api/modules/course'
 import { Button, CircularProgress, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPenToSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
-import AddRoom from '../components/common/AddRoom';
 import { toast } from 'react-toastify';
-import EditRoom from '../components/common/EditRoom';
+import AddCourse from '../components/common/AddCourse';
+import EditCourse from '../components/common/EditCourse';
 
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
@@ -50,27 +50,33 @@ function stableSort(array, comparator) {
 const headCells = [
     {
         id: 'number',
-        numberic: true,
+        numberic: false,
         disablePadding: true,
-        label: 'Mã phòng'
+        label: 'Mã môn'
+    },
+    {
+        id: 'department',
+        numberic: false,
+        disablePadding: true,
+        label: 'Khoa'
     },
     {
         id: 'name',
         numberic: false,
         disablePadding: true,
-        label: 'Tên phòng'
+        label: 'Tên môn'
     },
     {
-        id: 'seatingCapacity',
-        numberic: true,
-        disablePadding: true,
-        label: 'Số lượng chỗ ngồi'
-    },
-    {
-        id: 'roomStatus',
+        id: 'instructor',
         numberic: false,
         disablePadding: true,
-        label: 'Trạng thái'
+        label: 'Giảng viên'
+    },
+    {
+        id: 'quanlity',
+        numberic: true,
+        disablePadding: true,
+        label: 'Số lượng'
     },
     {
         id: 'action',
@@ -127,9 +133,9 @@ EnhancedTableHead.propTypes = {
     rowCount: PropTypes.number.isRequired,
 };
 
-const Room = () => {
 
-    const [roomInfo, setRoomInfo] = useState([])
+const Course = () => {
+    const [courseInfo, setCourseInfo] = useState([])
     const [open, setOpen] = useState(false);
     const [isRequest, setIsRequest] = useState(false)
     const [showAddNew, setShowAddNew] = useState(false)
@@ -179,7 +185,7 @@ const Room = () => {
     };
 
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - roomInfo.length) : 0;
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - courseInfo.length) : 0;
     const handleClickOpen = (id) => {
         setSelectedId(id);
         setOpen(true);
@@ -200,25 +206,25 @@ const Room = () => {
     }
 
     useEffect(() => {
-        const getRoomInfo = async () => {
-            const { response, err } = await roomApis.getAllRooms()
+        const getCourseInfo = async () => {
+            const { response, err } = await courseApis.getAllCourses()
             if (response) {
                 console.log(response)
-                setRoomInfo(response)
+                setCourseInfo(response)
                 setIsLoading(false)
             }
             if (err) {
                 console.log(err)
             }
         }
-        getRoomInfo()
+        getCourseInfo()
     }, [showAddNew, isRequest, showEdit])
 
-    const deleteRoom = async (number) => {
+    const deleteCourse = async (number) => {
         console.log(number)
-        const { response, err } = await roomApis.deleteRoomByNumber(number)
+        const { response, err } = await courseApis.deleteCourse(number)
         if (response) {
-            toast.success("Xoá phòng thành công !")
+            toast.success("Xoá khoá học thành công !")
             setIsRequest(!isRequest)
             setOpen(false)
         }
@@ -228,11 +234,10 @@ const Room = () => {
         }
     }
 
-
     return (
-        <div className='main-room'>
-            <button className="btn-add-room" onClick={() => handleAddNew()}>Thêm mới</button>
-            <div className='room-table'>
+        <div className='main-course'>
+            <button className="btn-add-course" onClick={() => handleAddNew()}>Thêm mới</button>
+            <div className='course-table'>
                 {isLoading && <CircularProgress sx={{
                     position: 'absolute',
                     top: '200px',
@@ -248,16 +253,16 @@ const Room = () => {
                                     order={order}
                                     orderBy={orderBy}
                                     onRequestSort={handleRequestSort}
-                                    rowCount={roomInfo.length}
+                                    rowCount={courseInfo.length}
                                 />
                                 <TableBody>
-                                    {stableSort(roomInfo, getComparator(order, orderBy))
+                                    {stableSort(courseInfo, getComparator(order, orderBy))
                                         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                                         .map((row, index) => {
                                             return (
                                                 <TableRow
                                                     hover
-                                                    onClick={(event) => handleClick(event, row.number)}
+                                                    onClick={(event) => handleClick(event, row.id)}
                                                     tabIndex={-1}
                                                     key={row.number}
                                                 >
@@ -265,9 +270,18 @@ const Room = () => {
                                                     >
                                                         {row.number}
                                                     </TableCell>
+                                                    <TableCell >{row.department.name}</TableCell>
                                                     <TableCell >{row.name}</TableCell>
-                                                    <TableCell >{row.seatingCapacity}</TableCell>
-                                                    <TableCell>{row.roomStatus}</TableCell>
+
+                                                    <TableCell sx={{
+                                                    }}>
+                                                        <div style={{display:'flex' , flexDirection:'column'}}>
+                                                            {row.instructorCourses.map((row) => (
+                                                                <span>{row.instructor.fname + " " + row.instructor.lname}</span>
+                                                            ))}
+                                                        </div>
+                                                    </TableCell>
+                                                    <TableCell>{row.maxNumberOfStudents}</TableCell>
                                                     <TableCell sx={{
                                                         display: 'flex',
                                                         justifyItems: 'center',
@@ -299,16 +313,16 @@ const Room = () => {
                                                                 open={open}
                                                                 onClose={handleClose}
                                                             >
-                                                                <DialogTitle>Xoá Phòng</DialogTitle>
+                                                                <DialogTitle>Xoá Khoá Học</DialogTitle>
                                                                 <DialogContent>
                                                                     <DialogContentText>
-                                                                        Bạn có muốn xoá phòng này không
+                                                                        Bạn có muốn xoá khoá học này không
                                                                     </DialogContentText>
                                                                 </DialogContent>
                                                                 <DialogActions>
                                                                     <Button onClick={handleClose}>Cancel</Button>
                                                                     <Button
-                                                                        onClick={() => deleteRoom(selectedId)}
+                                                                        onClick={() => deleteCourse(selectedId)}
                                                                         sx={{
                                                                             backgroundColor: 'white',
                                                                             ":hover": {
@@ -340,17 +354,17 @@ const Room = () => {
                 <TablePagination
                     rowsPerPageOptions={[5, 10, 25]}
                     component="div"
-                    count={roomInfo.length}
+                    count={courseInfo.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </div>
-            {showAddNew && <AddRoom onClose={() => setShowAddNew(false)} />}
-            {showEdit && <EditRoom number={selectedId} onClose={() => setShowEdit(false)} />}
+            {showAddNew && <AddCourse onClose={() => setShowAddNew(false)} />}
+            {showEdit && <EditCourse number={selectedId} onClose={() => setShowEdit(false)} />}
         </div>
     )
 }
 
-export default Room
+export default Course
