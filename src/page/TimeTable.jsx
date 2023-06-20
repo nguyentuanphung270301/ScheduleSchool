@@ -11,6 +11,7 @@ import studentApis from '../api/modules/student';
 import scheduleApis from '../api/modules/schedule'
 import instructorsApis from '../api/modules/instructor';
 import { useState } from 'react';
+import RegisterCourse from '../components/common/RegisterCourse';
 
 
 const TimeTable = () => {
@@ -19,16 +20,19 @@ const TimeTable = () => {
     const role = localStorage.getItem('role')
     const [userInfo, setUserInfo] = useState(null)
     const [timeTable, setTimeTable] = useState(null)
+    const [showAddNew, setShowAddNew] = useState(false)
 
-    const handleItemClick = (id) => {
-        console.log(`Clicked item with id: ${id}`);
-    };
+
+    const handleAddNew = () => {
+        setShowAddNew(true)
+    }
 
     useEffect(() => {
         const isChecked = async () => {
             if (role !== null && role === 'ROLE_STUDENT') {
                 const { response, err } = await studentApis.getStudentById(username)
                 if (response) {
+                    setUserInfo(response)
                     console.log(response)
                 }
                 if (err) {
@@ -73,16 +77,26 @@ const TimeTable = () => {
                     console.log(err)
                 }
             }
+            if (role === 'ROLE_STUDENT' && userInfo !== null) {
+                const { response, err } = await studentApis.getScheduleOfStudent(userInfo.id)
+                if (response) {
+                    console.log(response)
+                    setTimeTable(response)
+                }
+                if (err) {
+                    console.log(err)
+                }
+            }
         }
         checkInfo()
-    }, [userInfo])
+    }, [userInfo, showAddNew])
 
 
     return (
         <div>
             <div className='main-timetable'>
-                {role === 'ROLE_STUDENT' && <button className='btn-timetable'>Đăng ký môn</button>}
-               {role === 'ROLE_LECTURER'&& <button className='btn-timetable'>Đăng ký dạy bù, thực hành</button>}
+                {role === 'ROLE_STUDENT' && <button className='btn-timetable' onClick={() => handleAddNew()}>Đăng ký môn</button>}
+                {role === 'ROLE_LECTURER' && <button className='btn-timetable'>Đăng ký dạy bù, thực hành</button>}
                 <div className='table'>
                     <TableContainer component={Paper} className='table-container'>
                         <Table aria-label="customized table">
@@ -103,7 +117,7 @@ const TimeTable = () => {
                                     top: '200px',
                                     right: 'calc(100% / 2)'
                                 }} />}
-                                {userInfo && timeTable && (timeTable.map((row) => (
+                                {role !== 'ROLE_STUDENT' && userInfo && timeTable && (timeTable.map((row) => (
                                     <TableRow
                                         key={row.id}
                                     >
@@ -114,7 +128,25 @@ const TimeTable = () => {
                                         <TableCell>{row.instructor.fname + ' ' + row.instructor.lname}</TableCell>
                                         <TableCell>{row.meetingTime.time}</TableCell>
                                         <TableCell align='center'>
-                                            <Link to={`/mainpage/timetable/detail/${row.instructor.id}`} onClick={() => handleItemClick(row.instructor.id)} style={{
+                                            <Link to={`/mainpage/timetable/detail/${row.instructor.id}`} style={{
+                                                color: 'inherit',
+                                                width: '100%',
+                                                textDecoration: 'none',
+                                            }}><FontAwesomeIcon className='table-icon' icon={faEye} /></Link></TableCell>
+                                    </TableRow>
+                                )))}
+                                {role === 'ROLE_STUDENT' && userInfo && timeTable && (timeTable.map((row) => (
+                                    <TableRow
+                                        key={row.id}
+                                    >
+                                        <TableCell>{row.timeTable.course.number}</TableCell>
+                                        <TableCell>{row.timeTable.department.name}</TableCell>
+                                        <TableCell>{row.timeTable.course.name}</TableCell>
+                                        <TableCell>{row.timeTable.room.name}</TableCell>
+                                        <TableCell>{row.timeTable.instructor.fname + ' ' + row.timeTable.instructor.lname}</TableCell>
+                                        <TableCell>{row.timeTable.meetingTime.time}</TableCell>
+                                        <TableCell align='center'>
+                                            <Link to={`/mainpage/timetable/detail/${userInfo.id}`} style={{
                                                 color: 'inherit',
                                                 width: '100%',
                                                 textDecoration: 'none',
@@ -125,6 +157,7 @@ const TimeTable = () => {
                         </Table>
                     </TableContainer>
                 </div>
+                {showAddNew && <RegisterCourse onClose={() => setShowAddNew(false)} />}
             </div>
         </div>
     )

@@ -130,9 +130,76 @@ const DetailTimeTable = () => {
                     console.log(err)
                 }
             }
+            if (role === 'ROLE_STUDENT' && userInfo !== null) {
+                const { response, err } = await studentApis.getScheduleOfStudent(userInfo.id)
+                if (response) {
+                    console.log(response)
+                    response.map((item) => {
+                        const [day, time] = item.timeTable.meetingTime.time.split(':')
+                        if (day.trim() === 'MON') {
+                            column = 0
+                        }
+                        if (day.trim() === 'TUE') {
+                            column = 1
+                        }
+                        if (day.trim() === 'WED') {
+                            column = 2
+                        }
+                        if (day.trim() === 'THU') {
+                            column = 3
+                        }
+                        if (day.trim() === 'FRI') {
+                            column = 4
+                        }
+                        if (day.trim() === 'SAT') {
+                            column = 5
+                        }
+                        if (day.trim() === 'SUN') {
+                            column = 6
+                        }
+                        if (time.trim() === '07 AM -- 08 AM') {
+                            row = 0
+                        }
+                        if (time.trim() === '08 AM -- 09 AM') {
+                            row = 1
+                        }
+                        if (time.trim() === '09 AM -- 10 AM') {
+                            row = 2
+                        }
+                        if (time.trim() === '10 AM -- 11 PM') {
+                            row = 3
+                        }
+                        if (time.trim() === '13 AM -- 14 PM') {
+                            row = 4
+                        }
+                        if (time.trim() === '14 PM -- 15 PM') {
+                            row = 5
+                        }
+                        if (time.trim() === '15 PM -- 16 PM') {
+                            row = 6
+                        }
+                        if (time.trim() === '16 PM -- 17 PM') {
+                            row = 7
+                        }
+                        result.push({
+                            'title': item.timeTable.course.name,
+                            'code': item.timeTable.course.number,
+                            'room': item.timeTable.room.name,
+                            'instructor': `${item.timeTable.instructor.fname} ${item.timeTable.instructor.lname}`,
+                            'column': column,
+                            'row': row
+                        });
+                    })
+                    console.log(result)
+                }
+                setData(result)
+                if (err) {
+                    console.log(err)
+                }
+            }
         }
         checkInfo()
-    }, [])
+    }, [userInfo])
 
     console.log(data)
 
@@ -148,9 +215,11 @@ const DetailTimeTable = () => {
                         <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{marginLeft: '10px'}} >Số điện thoại: {userInfo.phone}</Typography>
                         <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{marginLeft: '10px'}} >Role: {userInfo.role}</Typography>
                     </div>}
-                    <Typography variant='h3' fontWeight='500' sx={{
+                    {role === 'ROLE_STUDENT' ? <Typography variant='h3' fontWeight='500' sx={{
                         top: '20px'
-                    }}>Lịch dạy</Typography>
+                    }}>Thời khoá biểu</Typography> : <Typography variant='h3' fontWeight='500' sx={{
+                        top: '20px'
+                    }}>Lịch dạy</Typography>}
                 </div>
                 <div className='schedule-week'>
                     {data ? <table className='detail-table'>

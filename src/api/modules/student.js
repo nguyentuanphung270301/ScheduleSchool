@@ -5,7 +5,9 @@ const studentEndpoints = {
     getAllStudents: 'api/v1/students/all',
     createStudent: 'api/v1/students/create',
     deleteStudentById: (id) => `api/v1/students/delete/${id}`,
-    updateStudent: 'api/v1/students/update'
+    updateStudent: 'api/v1/students/update',
+    addTimeTableForStudent: (studentId, timeTableId) => `api/v1/students/schedule/${studentId}/${timeTableId}`,
+    getScheduleOfStudent: (studentId) => `api/v1/students/schedule/${studentId}`
 }
 
 
@@ -46,6 +48,22 @@ const studentApis = {
         try {
             console.log('send request')
             const response = await axiosClient.put(studentEndpoints.updateStudent, data)
+            return { response }
+        }
+        catch (err) { return { err } }
+    },
+    addTimeTableForStudent: async (studentId, timeTableId) => {
+        try {
+            console.log('send request')
+            const response = await axiosClient.post(studentEndpoints.addTimeTableForStudent(studentId, timeTableId))
+            return { response }
+        }
+        catch (err) { return { err } }
+    },
+    getScheduleOfStudent: async (studentId) => {
+        try {
+            console.log('send request')
+            const response = await axiosClient.get(studentEndpoints.getScheduleOfStudent(studentId))
             return { response }
         }
         catch (err) { return { err } }
