@@ -274,6 +274,17 @@ const Navbar = () => {
                                         }}>Quản lý sinh viên</Typography>
                                     </Link>
                                 </li>
+                                <li className={`${headerText === 'Chương trình đào tạo' ? 'active' : ''}`} onClick={() => handleMenuClick('Chương trình đào tạo')}>
+                                    <Link to='/mainpage/tranning-program' style={{
+                                        color: 'inherit',
+                                        width: '100%',
+                                        textDecoration: 'none',
+                                    }}>
+                                        <Typography className='text-li' sx={{
+                                            marginLeft: '60px'
+                                        }}>Chương trình đào tạo</Typography>
+                                    </Link>
+                                </li>
                             </ul></>)}
                     </li>
                 </ul>

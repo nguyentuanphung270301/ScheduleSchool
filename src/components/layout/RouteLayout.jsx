@@ -8,6 +8,7 @@ import Instructors from '../../page/Instructors';
 import Student from '../../page/Student';
 import Course from '../../page/Course';
 import GenerateSchedule from '../../page/GenerateSchedule';
+import TranningProgram from '../../page/TranningProgram';
 
 const RouteLayout = () => {
     return (
@@ -22,6 +23,7 @@ const RouteLayout = () => {
                 <Route path='/student' element={<Student />} />
                 <Route path='/course' element={<Course />} />
                 <Route path='/generate-schedule' element={<GenerateSchedule/>}/>
+                <Route path='/tranning-program' element={<TranningProgram/>}/>
             </Routes>
         </div>
     )

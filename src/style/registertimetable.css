@@ -1,0 +1,112 @@
+:root {
+    --width-nav: 60px;
+    --width-media: 60px;
+}
+
+.main-register-timetable {
+    top: 20px;
+    position: absolute;
+    width: 1000px;
+    height: 650px;
+    background-color: #f8f8f8;
+    border-radius: 10px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .icon-register-timetable {
+        position: absolute;
+        right: 0;
+        height: 30px;
+        margin: 10px;
+    }
+
+    .icon-register-timetable:hover {
+        color: red;
+    }
+
+    .btn-register-timetable {
+        padding: 1em 2em;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: #54afff;
+        transition: all 1000ms;
+        font-size: 12px;
+        position: absolute;
+        right: 200px;
+        top: 125px;
+        overflow: hidden;
+        outline: 2px solid #54afff;
+    }
+
+
+    .btn-register-timetable:hover,
+    .btn-save-timetable:hover {
+        color: #ffffff;
+        transform: scale(1.1);
+        outline: 2px solid #54afff;
+        box-shadow: 4px 5px 17px -4px #54afff;
+    }
+
+    .btn-register-timetable::before,
+    .btn-save-timetable::before {
+        content: "";
+        position: absolute;
+        left: -50px;
+        top: 0;
+        width: 0;
+        height: 100%;
+        background-color: #54afff;
+        transform: skewX(45deg);
+        z-index: -1;
+        transition: width 1000ms;
+    }
+
+    .btn-register-timetable::before,
+    .btn-save-timetable::before {
+        width: 250%;
+    }
+
+    .btn-save-timetable {
+        padding: 1em 2em;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        color: #54afff;
+        transition: all 1000ms;
+        font-size: 12px;
+        position: absolute;
+        right: 50px;
+        top: 125px;
+        overflow: hidden;
+        outline: 2px solid #54afff;
+    }
+
+    .cbx-course {
+        position: absolute;
+        left: 200px;
+        top: 118px;
+        margin-bottom: 20px;
+        margin-right: 10px;
+        height: 54px;
+        border-radius: 5px;
+        background: white;
+        border: none;
+        padding: 0 20px;
+        font-weight: 300;
+        font-size: 14px;
+        color: #4B4B4B;
+    }
+
+    .table-register-timetable {
+        top: 180px;
+        position: absolute;
+        width: 95%;
+    }
+}
