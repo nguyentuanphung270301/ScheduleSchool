@@ -66,6 +66,10 @@
         height: 570px;
     }
 
+    .table-container.canvas {
+        height: auto;
+    }
+
     .table-icon:hover {
         cursor: pointer;
         color: #0c72c0;

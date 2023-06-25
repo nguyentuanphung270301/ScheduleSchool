@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import '../../style/registercourse.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faXmark, faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 
 
 
-const RegisterCourse = ({ onClose }) => {
+const RegisterCourse = ({ onClose, isSave }) => {
 
     const [userInfo, setUserInfo] = useState(null)
     const [scheduleInfo, setScheduleInfo] = useState(null)
@@ -85,6 +85,8 @@ const RegisterCourse = ({ onClose }) => {
         if (response) {
             console.log(response)
             setOpen(false)
+            isSave()
+            onClose()
             toast.success("Đăng ký môn học thành công !")
         }
         if (err) {

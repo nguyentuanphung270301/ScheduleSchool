@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import '../style/timetable.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faEye } from "@fortawesome/free-solid-svg-icons";
@@ -13,15 +13,21 @@ import instructorsApis from '../api/modules/instructor';
 import { useState } from 'react';
 import RegisterCourse from '../components/common/RegisterCourse';
 import RegisterTimeTable from '../components/common/RegisterTimeTable';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 
 const TimeTable = () => {
+
+    const tableRef = useRef(null);
 
     const username = localStorage.getItem('username')
     const role = localStorage.getItem('role')
     const [userInfo, setUserInfo] = useState(null)
     const [timeTable, setTimeTable] = useState(null)
     const [showAddNew, setShowAddNew] = useState(false)
+    const [isSaved, setIsSaved] = useState(false)
+
 
 
     const handleAddNew = () => {
@@ -81,8 +87,8 @@ const TimeTable = () => {
             if (role === 'ROLE_STUDENT' && userInfo !== null) {
                 const { response, err } = await studentApis.getScheduleOfStudent(userInfo.id)
                 if (response) {
-                    console.log(response)
                     setTimeTable(response)
+                    console.log(response)
                 }
                 if (err) {
                     console.log(err)
@@ -93,13 +99,31 @@ const TimeTable = () => {
     }, [userInfo, showAddNew])
 
 
+    useEffect(() => {
+        const sendEmail = async () => {
+            if (timeTable && isSaved && userInfo) {
+
+                console.log(timeTable)
+                const data = {
+                    email: userInfo.email,
+                    data: timeTable,
+                    role: userInfo.role
+                }
+                const response = await axios.post("http://localhost:5000/api/v1/sendemail", data)
+                console.log(response.data)
+                setIsSaved(false)
+            }
+        }
+        sendEmail()
+    }, [timeTable, isSaved, userInfo]);
+
     return (
         <div>
             <div className='main-timetable'>
                 {role === 'ROLE_STUDENT' && <button className='btn-timetable' onClick={() => handleAddNew()}>Đăng ký môn</button>}
                 {role === 'ROLE_LECTURER' && <button className='btn-timetable' onClick={() => handleAddNew()}>Đăng ký dạy bù, thực hành</button>}
-                <div className='table'>
-                    <TableContainer component={Paper} className='table-container'>
+                <div className='table' >
+                    <TableContainer component={Paper} className={`table-container ${isSaved ? 'canvas' : ''}`} ref={tableRef}>
                         <Table aria-label="customized table">
                             <TableHead sx={{ backgroundColor: 'black', position: 'sticky', top: 0 }}>
                                 <TableRow>
@@ -158,8 +182,14 @@ const TimeTable = () => {
                         </Table>
                     </TableContainer>
                 </div>
-                {showAddNew && <RegisterCourse onClose={() => setShowAddNew(false)} />}
-                {showAddNew && role === 'ROLE_LECTURER' && <RegisterTimeTable onClose={() => setShowAddNew(false)} />}
+                {showAddNew && <RegisterCourse onClose={() => setShowAddNew(false)} isSave={() => {
+                    setIsSaved(true)
+                    setTimeTable(null)
+                }} />}
+                {showAddNew && role === 'ROLE_LECTURER' && <RegisterTimeTable onClose={() => setShowAddNew(false)} isSaved={() => {
+                    setIsSaved(true)
+                    setTimeTable(null)
+                }} />}
             </div>
         </div>
     )

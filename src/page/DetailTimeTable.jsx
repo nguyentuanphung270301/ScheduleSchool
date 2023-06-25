@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom';
 import '../style/detailTimeTable.css'
 import scheduleApis from '../api/modules/schedule'
@@ -12,6 +12,7 @@ import instructorsApis from '../api/modules/instructor';
 
 
 const DetailTimeTable = () => {
+
 
     const location = useLocation();
     const id = location.pathname.replace('/mainpage/timetable/detail/', '');
@@ -209,11 +210,11 @@ const DetailTimeTable = () => {
             <div className='main-detail-timetable'>
                 <div className='header-detail-timetale'>
                     {userInfo && <div className='card-info'>
-                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{marginLeft: '10px', marginTop:'5px'}}>Tên: {userInfo.fname + " " + userInfo.lname}</Typography>
-                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{marginLeft: '10px'}} >Ngày sinh: {userInfo.dob}</Typography>
-                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{marginLeft: '10px'}} >Email: {userInfo.email}</Typography>
-                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{marginLeft: '10px'}} >Số điện thoại: {userInfo.phone}</Typography>
-                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{marginLeft: '10px'}} >Role: {userInfo.role}</Typography>
+                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{ marginLeft: '10px', marginTop: '5px' }}>Tên: {userInfo.fname + " " + userInfo.lname}</Typography>
+                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{ marginLeft: '10px' }} >Ngày sinh: {userInfo.dob}</Typography>
+                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{ marginLeft: '10px' }} >Email: {userInfo.email}</Typography>
+                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{ marginLeft: '10px' }} >Số điện thoại: {userInfo.phone}</Typography>
+                        <Typography variant='h7' fontSize='18px' fontWeight='500' sx={{ marginLeft: '10px' }} >Role: {userInfo.role}</Typography>
                     </div>}
                     {role === 'ROLE_STUDENT' ? <Typography variant='h3' fontWeight='500' sx={{
                         top: '20px'

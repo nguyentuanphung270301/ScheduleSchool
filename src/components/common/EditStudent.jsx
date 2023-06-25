@@ -52,7 +52,7 @@ const EditStudent = ({ id, onClose }) => {
             }
             if (err) {
                 console.log(err)
-                toast.error(err)
+                toast.error(err.message)
             }
         }
     }

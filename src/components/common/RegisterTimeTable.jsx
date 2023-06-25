@@ -8,7 +8,7 @@ import scheduleApis from '../../api/modules/schedule';
 import instructorsApis from '../../api/modules/instructor';
 import { toast } from 'react-toastify';
 
-const RegisterTimeTable = ({ onClose }) => {
+const RegisterTimeTable = ({ onClose, isSaved }) => {
 
     const [course, setCourse] = useState([])
     const [courseNumber, setCourseNumber] = useState('')
@@ -63,6 +63,8 @@ const RegisterTimeTable = ({ onClose }) => {
         const { response, err } = await scheduleApis.saveExtraTimeTable()
         if (response) {
             console.log(response)
+            isSaved()
+            onClose()
             toast.success("Lưu thời khoá biểu thành công !")
             onClose()
         }

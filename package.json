@@ -17,6 +17,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "html2canvas": "^1.4.1",
     "http": "^0.0.1-security",
     "multiselect-react-dropdown": "^2.0.25",
     "nodemailer": "^6.9.3",
