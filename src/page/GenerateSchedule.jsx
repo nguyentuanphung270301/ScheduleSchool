@@ -32,7 +32,7 @@ const GenerateSchedule = () => {
         if (response) {
             console.log(response)
             setSchedule(response)
-            toast.success("Lưu thời khoá biểu mới thành công !")
+            toast.success("Tạo thời khoá biểu mới thành công !")
         }
         if (err) {
             console.log(err)
