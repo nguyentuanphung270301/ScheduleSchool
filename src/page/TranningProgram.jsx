@@ -246,7 +246,7 @@ const TranningProgram = () => {
                 }} />}
                 {!isLoading && (
                     <>
-                        <TableContainer component={Paper} sx={{ height: '550px', }}>
+                        <TableContainer component={Paper} sx={{ height: '480px', }}>
                             <Table sx={{ minWidth: 650 }} aria-labelledby="tableTitle"
                             >
                                 <EnhancedTableHead
